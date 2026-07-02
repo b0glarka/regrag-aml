@@ -65,11 +65,48 @@ def _find_boilerplate_keys(page_lines: list[list[str]]) -> set[str]:
     return {key for key, count in counts.items() if count >= threshold}
 
 
+# Footer years used to locate the printed page number, e.g. "14 (c) 2012-2025".
+_FOOTER_YEARS = ("2012", "2025")
+
+
+def _printed_page_number(raw: str) -> int | None:
+    """Extract the document's own printed page number from a page footer.
+
+    The footer reads like "14 (c) 2012-2025" (sometimes right-aligned). We take
+    the 1-3 digit number on that line that is not one of the copyright years.
+    """
+    for line in raw.replace("\r", "\n").split("\n"):
+        if "2012" in line and "2025" in line:
+            candidates = [
+                int(n) for n in re.findall(r"\d{1,3}", line) if n not in _FOOTER_YEARS
+            ]
+            if candidates:
+                return candidates[0]
+    return None
+
+
+def _physical_to_printed_offset(raws: list[str]) -> int:
+    """Derive the constant offset between physical PDF index and printed page.
+
+    The FATF PDF prints page N on physical page N+1 (a cover shifts it). We read
+    the offset from the footers rather than hardcode it, so it self-corrects if
+    the front matter changes. Returns 0 if no printed numbers are found.
+    """
+    counts: Counter[int] = Counter()
+    for i, raw in enumerate(raws, start=1):
+        printed = _printed_page_number(raw)
+        if printed is not None:
+            counts[i - printed] += 1
+    return counts.most_common(1)[0][0] if counts else 0
+
+
 def load_pages(pdf_path: Path | None = None) -> list[dict]:
     """Return the corpus as a list of {"page": int, "text": str} records.
 
-    Page numbers are 1-based to match how a human refers to a PDF page. Running
-    headers/footers and empty pages are dropped.
+    `page` is the document's own PRINTED page number (from the footer), not the
+    physical PDF index, so citations and gold-set page references match what a
+    human sees in the FATF PDF. Running headers/footers and empty pages are
+    dropped.
     """
     pdf_path = pdf_path or config.RAW_PDF_PATH
     if not pdf_path.exists():
@@ -79,25 +116,27 @@ def load_pages(pdf_path: Path | None = None) -> list[dict]:
         )
 
     reader = PdfReader(str(pdf_path))
+    raws = [(page.extract_text() or "").replace("\r", "\n") for page in reader.pages]
+    offset = _physical_to_printed_offset(raws)
 
-    # Pass 1: normalize each page into non-empty cleaned lines.
-    page_numbers: list[int] = []
+    # Pass 1: normalize each page into non-empty cleaned lines; label each with
+    # the printed page number (physical index minus the derived offset).
+    page_labels: list[int] = []
     page_lines: list[list[str]] = []
-    for i, page in enumerate(reader.pages, start=1):
-        raw = (page.extract_text() or "").replace("\r", "\n")
+    for i, raw in enumerate(raws, start=1):
         lines = [_normalize_line(line) for line in raw.split("\n")]
         lines = [line for line in lines if line]
-        page_numbers.append(i)
+        page_labels.append(i - offset)
         page_lines.append(lines)
 
     # Pass 2: drop running headers/footers, then keep pages that still have text.
     boilerplate = _find_boilerplate_keys(page_lines)
     records: list[dict] = []
-    for num, lines in zip(page_numbers, page_lines):
+    for label, lines in zip(page_labels, page_lines):
         kept = [line for line in lines if _line_key(line) not in boilerplate]
         text = "\n".join(kept).strip()
         if text:
-            records.append({"page": num, "text": text})
+            records.append({"page": label, "text": text})
     return records
 
 

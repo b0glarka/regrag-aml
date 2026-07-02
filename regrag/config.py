@@ -17,12 +17,16 @@ DATA_DIR = REPO_ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
 RAW_PDF_PATH = RAW_DIR / "fatf_recommendations_2012.pdf"
 CHROMA_DIR = REPO_ROOT / ".chroma"
-GOLD_SET_PATH = REPO_ROOT / "eval" / "gold_set.jsonl"
+GOLD_SET_PATH = REPO_ROOT / "eval" / "gold_set.yaml"
 
 # --- Corpus ----------------------------------------------------------------
 # FATF "The FATF Recommendations" (the 40 Recommendations). The download URLs
 # and manual-fallback source page live in download_corpus.py.
 CORPUS_NAME = "FATF Recommendations (40 Recommendations)"
+
+# Where to send users for authoritative guidance and for questions this
+# assistant cannot or should not answer.
+FATF_WEBSITE = "https://www.fatf-gafi.org/"
 
 # SHA-256 of the corpus PDF, for reproducible pinning. The download step
 # verifies every run against it; a mismatch means the source bytes changed.
