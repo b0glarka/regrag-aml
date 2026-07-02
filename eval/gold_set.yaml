@@ -1,0 +1,393 @@
+- id: q001
+  question: What is the purpose of the risk-based approach in the FATF Recommendations?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.1
+  category: core_principle
+  expected_pages: [31, 33]
+  reference_answer: >
+    Countries should identify, assess and understand ML/TF risks and apply proportionate measures,
+    using enhanced measures for higher risks and simplified measures for lower risks.
+  notes: Recommendation 1
+
+- id: q002
+  question: What should countries do when higher money laundering or terrorist financing risks are identified?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.1
+  category: compliance
+  expected_pages: [33]
+  reference_answer: >
+    Countries must ensure their AML/CFT regime addresses higher risks and applies enhanced measures.
+  notes: Recommendation 1
+
+- id: q003
+  question: When must financial institutions apply customer due diligence measures?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.10
+  category: cdd
+  expected_pages: [14]
+  reference_answer: >
+    CDD is required when establishing business relationships, conducting occasional transactions
+    above thresholds, when ML/TF is suspected, or when identification data is uncertain.
+  notes: Recommendation 10
+
+- id: q004
+  question: What must happen if a financial institution cannot complete customer due diligence?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.10
+  category: compliance_action
+  expected_pages: [14]
+  reference_answer: >
+    The institution must not proceed with the transaction or relationship and should consider filing an STR.
+  notes: Recommendation 10
+
+- id: q005
+  question: How long must financial institutions retain transaction records?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.11
+  category: recordkeeping
+  expected_pages: [15]
+  reference_answer: >
+    At least five years.
+  notes: Recommendation 11
+
+- id: q006
+  question: What additional measures are required for foreign politically exposed persons?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.12
+  category: peps
+  expected_pages: [16]
+  reference_answer: >
+    Senior management approval, source of wealth verification, and enhanced ongoing monitoring.
+  notes: Recommendation 12
+
+- id: q007
+  question: What is prohibited in correspondent banking relationships under FATF standards?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.13
+  category: banking_controls
+  expected_pages: [17]
+  reference_answer: >
+    Relationships with shell banks and allowing respondent institutions to use accounts for shell banks.
+  notes: Recommendation 13
+
+- id: q008
+  question: What requirements apply to money or value transfer services?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.14
+  category: mvts
+  expected_pages: [17]
+  reference_answer: >
+    They must be licensed or registered, monitored, and subject to sanctions if operating illegally.
+  notes: Recommendation 14
+
+- id: q009
+  question: What information must be included in payment or value transfer messages?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.16
+  category: payments
+  expected_pages: [17, 18]
+  reference_answer: >
+    Accurate originator and beneficiary information that travels with the transfer.
+  notes: Recommendation 16
+
+- id: q010
+  question: What should a financial institution do when it suspects criminal proceeds?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.20
+  category: reporting
+  expected_pages: [19]
+  reference_answer: >
+    Report promptly to the Financial Intelligence Unit (FIU).
+  notes: Recommendation 20
+
+- id: q011
+  question: When do DNFBP customer due diligence obligations apply?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.22
+  category: dnfbp
+  expected_pages: [19, 20]
+  reference_answer: >
+    When engaging in specified activities such as real estate transactions, managing client funds,
+    or forming legal entities.
+  notes: Recommendation 22
+
+- id: q012
+  question: What must countries ensure about beneficial ownership of legal persons?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.24
+  category: transparency
+  expected_pages: [22]
+  reference_answer: >
+    Information must be adequate, accurate, up to date, and accessible to competent authorities.
+  notes: Recommendation 24
+
+- id: q013
+  question: What information must be available for trusts and similar legal arrangements?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.25
+  category: trusts
+  expected_pages: [22]
+  reference_answer: >
+    Information on settlors, trustees, and beneficiaries must be maintained and accessible.
+  notes: Recommendation 25
+
+- id: q014
+  question: What is the role of a Financial Intelligence Unit (FIU)?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.29
+  category: fiu
+  expected_pages: [24]
+  reference_answer: >
+    To receive, analyse, and disseminate suspicious transaction reports.
+  notes: Recommendation 29
+
+- id: q015
+  question: What powers should law enforcement authorities have in AML investigations?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.31
+  category: enforcement
+  expected_pages: [25]
+  reference_answer: >
+    Powers to obtain documents, search premises, seize evidence, and conduct investigations.
+  notes: Recommendation 31
+
+- id: q016
+  question: What systems should countries use to detect cross-border cash movements?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.32
+  category: border_controls
+  expected_pages: [25]
+  reference_answer: >
+    Declaration or disclosure systems for currency and bearer negotiable instruments.
+  notes: Recommendation 32
+
+- id: q017
+  question: What statistics should countries maintain for AML/CFT effectiveness?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.33
+  category: governance
+  expected_pages: [26]
+  reference_answer: >
+    STRs, investigations, prosecutions, convictions, and asset freezing/seizure data.
+  notes: Recommendation 33
+
+- id: q018
+  question: Can mutual legal assistance be refused because an offence is fiscal in nature?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.37
+  category: cooperation
+  expected_pages: [27]
+  reference_answer: >
+    No, it should not be refused solely on that basis.
+  notes: Recommendation 37
+
+- id: q019
+  question: What measures apply to foreign confiscation requests?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.38
+  category: asset_recovery
+  expected_pages: [28]
+  reference_answer: >
+    Authorities must be able to freeze, seize, confiscate, and manage criminal assets.
+  notes: Recommendation 38
+
+- id: q020
+  question: When are simplified AML/CFT measures allowed?
+  type: in_scope
+  difficulty: medium
+  recommendation: INR.1
+  category: risk_based
+  expected_pages: [31, 33, 35]
+  reference_answer: >
+    Only when lower risks are identified, and never where ML/TF is suspected.
+  notes: Interpretive Note R1
+
+- id: q021
+  question: What is the objective of Recommendation 40 on international cooperation?
+  type: in_scope
+  difficulty: medium
+  recommendation: R.40
+  category: cooperation
+  expected_pages: [29, 30]
+  reference_answer: >
+    To ensure rapid and effective international cooperation in AML/CFT matters.
+  notes: Recommendation 40
+
+- id: q022
+  question: What must financial institutions document under the risk-based approach?
+  type: in_scope
+  difficulty: medium
+  recommendation: INR.1
+  category: risk_management
+  expected_pages: [35]
+  reference_answer: >
+    Risk assessments covering customers, geography, products, services, and transactions.
+  notes: Interpretive Note R1
+
+- id: q023
+  question: What is the difference between enhanced and simplified measures?
+  type: in_scope
+  difficulty: medium
+  recommendation: INR.1
+  category: synthesis
+  expected_pages: [31, 35]
+  reference_answer: >
+    Enhanced measures apply to higher risks; simplified measures apply to lower risks.
+  notes: Risk-based approach synthesis
+
+- id: q024
+  question: Which authorities are involved in AML/CFT implementation?
+  type: in_scope
+  difficulty: easy
+  recommendation: R.26-R.31
+  category: institutions
+  expected_pages: [23, 24, 25]
+  reference_answer: >
+    FIUs, supervisors, law enforcement authorities, and other competent authorities.
+  notes: Cross-institutional roles
+
+# ---------------- SYNTHESIS (HARD) ----------------
+
+- id: q025
+  question: How do CDD requirements and wire transfer rules work together in AML enforcement?
+  type: in_scope
+  difficulty: hard
+  recommendation: R.10+R.16
+  category: synthesis
+  expected_pages: [14, 17, 18]
+  reference_answer: >
+    CDD verifies identity while wire transfer rules ensure traceability through originator and beneficiary information.
+  notes: Cross-recommendation linkage
+
+- id: q026
+  question: How do FIU functions differ from supervisory authorities in AML systems?
+  type: in_scope
+  difficulty: hard
+  recommendation: R.29+R.26-28
+  category: synthesis
+  expected_pages: [24, 25]
+  reference_answer: >
+    FIUs analyze financial intelligence, while supervisors enforce compliance and monitor institutions.
+  notes: Institutional distinction
+
+- id: q027
+  question: How does the risk-based approach affect supervision of financial institutions?
+  type: in_scope
+  difficulty: hard
+  recommendation: R.26-R.28 + INR.1
+  category: synthesis
+  expected_pages: [31, 33, 35]
+  reference_answer: >
+    Supervisors prioritize higher-risk institutions and allocate resources proportionately.
+  notes: Risk-based supervision
+
+- id: q028
+  question: How do beneficial ownership rules and trust transparency rules work together?
+  type: in_scope
+  difficulty: hard
+  recommendation: R.24+R.25
+  category: synthesis
+  expected_pages: [22]
+  reference_answer: >
+    They ensure transparency of both legal persons and legal arrangements to prevent concealment of control.
+  notes: Corporate transparency synthesis
+
+# ---------------- OUT-OF-SCOPE ----------------
+
+- id: q029
+  question: Which countries are currently on the FATF grey list?
+  type: out_of_scope
+  difficulty: easy
+  recommendation: null
+  category: current_events
+  expected_pages: []
+  reference_answer: >
+    Not contained in the FATF Recommendations document.
+  notes: External knowledge
+
+- id: q030
+  question: What is the EU AML regulation definition of customer due diligence?
+  type: out_of_scope
+  difficulty: easy
+  recommendation: null
+  category: external_framework
+  expected_pages: []
+  reference_answer: >
+    Not defined in FATF Recommendations.
+  notes: Cross-framework
+
+- id: q031
+  question: How many STRs were filed globally in 2024?
+  type: out_of_scope
+  difficulty: easy
+  recommendation: null
+  category: statistics
+  expected_pages: []
+  reference_answer: >
+    Not provided in FATF Recommendations.
+  notes: Missing data
+
+- id: q032
+  question: Does FATF recommend machine learning models for transaction monitoring?
+  type: out_of_scope
+  difficulty: medium
+  recommendation: null
+  category: ai
+  expected_pages: []
+  reference_answer: >
+    No ML architectures are specified.
+  notes: AI misconception
+
+- id: q033
+  question: Which blockchain analytics vendors are approved by FATF?
+  type: out_of_scope
+  difficulty: medium
+  recommendation: null
+  category: vendors
+  expected_pages: []
+  reference_answer: >
+    None are approved or endorsed.
+  notes: Vendor hallucination
+
+- id: q034
+  question: Does FATF require cryptocurrency exchanges to use zero-knowledge proofs?
+  type: refutation
+  difficulty: medium
+  recommendation: R.15
+  category: crypto
+  expected_pages: [17, 78]
+  reference_answer: >
+    No. FATF regulates virtual asset service providers but does not prescribe specific cryptographic methods.
+  notes: Virtual assets clarification
+
+- id: q035
+  question: Does FATF specify a €10,000 cash reporting threshold?
+  type: refutation
+  difficulty: medium
+  recommendation: R.10
+  category: numeric_trap
+  expected_pages: [14]
+  reference_answer: >
+    No. FATF does not set a €10,000 threshold. For occasional transactions it specifies a
+    designated threshold of USD/EUR 15,000; cross-border cash reporting thresholds are set
+    by individual countries.
+  notes: Cash reporting misconception (the designated threshold is 15,000, not 10,000)

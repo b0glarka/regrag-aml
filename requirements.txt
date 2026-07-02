@@ -326,6 +326,7 @@ pyyaml==6.0.3
     #   chromadb
     #   huggingface-hub
     #   kubernetes
+    #   regrag-aml
     #   transformers
     #   uvicorn
 referencing==0.37.0
