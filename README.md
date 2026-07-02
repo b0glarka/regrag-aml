@@ -30,10 +30,10 @@ FATF corpus (PDF)
    answer + citations
 ```
 
-- Corpus: FATF "The FATF Recommendations" (the 40 Recommendations). One corpus, one embedding model, one vector store.
+- Corpus: FATF "The FATF Recommendations" (the 40 Recommendations). One corpus, one embedding model, one vector store. The PDF is pulled from a pinned Internet Archive (Wayback Machine) snapshot and verified by SHA-256, so the corpus is reproducible and independent of FATF's live CDN. FATF publishes no data API; a pinned, checksummed archive snapshot is the more durable source for a static standards document.
 - Embeddings: local `sentence-transformers` (no API cost, fully offline for eval).
 - Vector store: Chroma (persisted locally).
-- Generation: Together AI (Llama 3.3 70B Instruct Turbo) by default, behind a provider-agnostic client that also supports OpenRouter and OpenAI-compatible endpoints.
+- Generation: an OpenRouter-hosted model (Llama 3.3 70B by default) behind a provider-agnostic client that also targets Together AI and any OpenAI-compatible endpoint. For the eval, OpenRouter routing is pinned so a run cannot silently switch upstream vendors.
 - Faithfulness judge: Anthropic Haiku 4.5 with a versioned rubric.
 
 ## Evaluation
@@ -42,18 +42,31 @@ _(Results table added on Day 2. Reports retrieval quality — recall@k, MRR — 
 
 ## How to run locally
 
+Dependencies are managed with [uv](https://docs.astral.sh/uv/). `requirements.txt` is generated from the lockfile and is what Streamlit Community Cloud installs on deploy.
+
 ```bash
-# 1. Create a virtual environment and install dependencies
-python -m venv .venv
-# Windows: .venv\Scripts\activate   |   macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
+# 1. Create the environment from the lockfile
+uv sync
 
 # 2. Configure API keys
-cp .env.example .env   # then fill in the keys you need
+cp .env.example .env   # then fill in the keys you need (see .env.example)
 
-# 3. Download the corpus (see scripts/, added on Day 1)
-# 4. Build the index, then launch the app (commands added as the pipeline lands)
+# 3. Download the corpus (gitignored; documented, reproducible download step)
+uv run python download_corpus.py
+
+# 4. Sanity check: extract the corpus text
+uv run python -m regrag.ingest
+
+# Further steps (build index, launch app) are added as the pipeline lands.
 ```
+
+To refresh `requirements.txt` after changing dependencies (the project itself is excluded so the deploy installs only third-party packages):
+
+```bash
+uv export --no-hashes --no-dev --no-emit-project -o requirements.txt
+```
+
+Prefer plain pip? `python -m venv .venv` then `pip install -r requirements.txt` also works.
 
 ## Limitations and next steps
 

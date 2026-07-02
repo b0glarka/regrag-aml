@@ -1,0 +1,36 @@
+[project]
+name = "regrag-aml"
+version = "0.1.0"
+description = "Retrieval-augmented Q&A over the FATF AML/CFT recommendations, with evaluation and injection-aware guardrails."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Corpus download
+    "requests>=2.32",
+    # Retrieval / embeddings (local, no API cost)
+    "sentence-transformers>=3.0",
+    "chromadb>=0.5",
+    "pypdf>=5.0",
+    # LLM providers (OpenAI-compatible client covers OpenRouter + Together)
+    "openai>=1.40",
+    "anthropic>=0.40",
+    # App + config
+    "streamlit>=1.38",
+    "python-dotenv>=1.0",
+    # Data / evaluation
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "scikit-learn>=1.5",
+    "tqdm>=4.66",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Install the regrag package (editable, via `uv sync`) so `from regrag import ...`
+# resolves no matter how a file is run, including VSCode's Run button on files
+# inside regrag/. The package dir (regrag) differs from the project name
+# (regrag-aml), so name it explicitly.
+[tool.hatch.build.targets.wheel]
+packages = ["regrag"]
