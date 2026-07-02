@@ -1,0 +1,19 @@
+# --- Retrieval / embeddings (local, no API cost) ---
+sentence-transformers>=3.0
+chromadb>=0.5
+pypdf>=5.0
+
+# --- LLM providers ---
+# The OpenAI-compatible client covers Together AI and OpenRouter via base_url.
+openai>=1.40
+anthropic>=0.40
+
+# --- App + config ---
+streamlit>=1.38
+python-dotenv>=1.0
+
+# --- Data / evaluation ---
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.5
+tqdm>=4.66
