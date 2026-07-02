@@ -10,7 +10,15 @@ Entry and mid-level AI/ML roles ask for shipped RAG systems, evaluation framewor
 
 ## Problem / motivation
 
-_(To be written: why grounded, cited, abstaining answers matter for regulatory text, and why a prototype-only demo is not enough.)_
+### What is FATF, and why this corpus
+
+The Financial Action Task Force (FATF) is the intergovernmental body, established by the G7 in 1989, that sets the global standard for combating money laundering, terrorist financing, and the financing of proliferation. Its core output, "The FATF Recommendations" (the 40 Recommendations), is the framework that more than 200 jurisdictions have committed to implement. FATF assesses countries against it through mutual evaluations, and jurisdictions with strategic deficiencies can be placed on its "grey" or "black" lists, which carries real economic and reputational consequences. In practice, the Recommendations shape the AML/CFT obligations that banks and other regulated institutions must meet worldwide.
+
+That makes it an ideal corpus for a grounded question-answering assistant: it is authoritative, public, bounded, and well-structured, and it is exactly the kind of high-stakes regulatory text where a wrong or invented answer is unacceptable. A compliance assistant that hallucinates an obligation, or cites a rule that is not there, is worse than useless.
+
+RegRAG-AML therefore does three things a demo chatbot does not: it answers only from the source text with page citations, it abstains when the documents do not cover a question, and it reports measured retrieval and answer-faithfulness metrics.
+
+Official source: [The FATF Recommendations](https://www.fatf-gafi.org/en/publications/fatfrecommendations/documents/fatf-recommendations.html) and [fatf-gafi.org](https://www.fatf-gafi.org/).
 
 ## Approach
 
