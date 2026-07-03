@@ -48,8 +48,19 @@ def parse_cited_pages(text: str) -> set[int]:
     return pages
 
 
+def citation_hit(expected_pages, cited_pages) -> float:
+    """1.0 if the answer cited at least one expected page, else 0.0.
+
+    The primary citation metric: did the answer point the user to a correct
+    source. Fairer than strict recall when a Recommendation spans several pages.
+    """
+    if not expected_pages:
+        return 0.0
+    return 1.0 if set(expected_pages) & set(cited_pages) else 0.0
+
+
 def citation_recall(expected_pages, cited_pages) -> float:
-    """Fraction of expected pages that the answer actually cited."""
+    """Fraction of expected pages that the answer actually cited (strict)."""
     expected = set(expected_pages)
     if not expected:
         return 0.0

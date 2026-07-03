@@ -23,6 +23,7 @@ dependencies = [
     "scikit-learn>=1.5",
     "tqdm>=4.66",
     "pyyaml>=6.0",
+    "matplotlib>=3.8",
 ]
 
 [build-system]
