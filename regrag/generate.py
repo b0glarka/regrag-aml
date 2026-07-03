@@ -13,10 +13,18 @@ Two guardrails wrap the model:
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 from regrag import config, llm
 from regrag.retrieve import max_similarity, retrieve
+
+# Matches a citation or a whole comma/"and"-separated run of them, so stripping
+# a refusal's citations doesn't leave dangling commas.
+_CITATION_RE = re.compile(
+    r"\s*\[pp?\.?\s*[0-9,\s\-–]+\](?:\s*[,;]?\s*(?:and\s+)?\[pp?\.?\s*[0-9,\s\-–]+\])*",
+    re.IGNORECASE,
+)
 
 ABSTAIN_MESSAGE = (
     "I can only answer questions about the FATF (Financial Action Task Force) "
@@ -95,5 +103,9 @@ def answer(question: str, k: int | None = None, pin_routing: bool = False) -> Ra
     if top < config.ABSTAIN_SIMILARITY_THRESHOLD:
         return RagAnswer(question, ABSTAIN_MESSAGE, True, top, hits)
 
-    text = llm.chat(_build_messages(question, hits), pin_routing=pin_routing)
-    return RagAnswer(question, text.strip(), False, top, hits)
+    text = llm.chat(_build_messages(question, hits), pin_routing=pin_routing).strip()
+    # A refusal that redirects to FATF should carry no page citations, even if
+    # the model added some out of habit.
+    if config.FATF_WEBSITE in text:
+        text = _CITATION_RE.sub("", text)
+    return RagAnswer(question, text, False, top, hits)

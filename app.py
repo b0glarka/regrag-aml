@@ -46,18 +46,23 @@ EXAMPLES = {
 
 @st.cache_resource(show_spinner="Preparing the index (first load only)...")
 def ensure_index() -> int:
-    """Build the vector index if it is missing.
+    """Build or rebuild the vector index when it is missing or stale.
 
     On the cloud the corpus and store are gitignored, so the app downloads the
-    corpus and builds the index on first run. Locally it is a no-op.
+    corpus and builds the index on first run. It also rebuilds when the stored
+    chunk count no longer matches the current corpus and chunking (for example
+    after an ingest change), so code updates take effect without a manual reset.
     """
-    collection = store.get_collection()
-    if collection.count() == 0:
-        import build_index
-        import download_corpus
+    import build_index
+    import download_corpus
+    from regrag.chunk import chunk_pages
 
-        if not download_corpus._already_present() and not download_corpus.download():
-            raise RuntimeError("corpus download failed")
+    if not download_corpus._already_present() and not download_corpus.download():
+        raise RuntimeError("corpus download failed")
+
+    expected = len(chunk_pages())
+    collection = store.get_collection()
+    if collection.count() != expected:
         build_index.main()
         collection = store.get_collection()
     return collection.count()
