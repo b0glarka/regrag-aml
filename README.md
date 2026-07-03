@@ -2,7 +2,7 @@
 
 A small, deployed, and evaluated retrieval-augmented Q&A assistant over a bounded public regulatory corpus: the FATF (Financial Action Task Force) AML/CFT recommendations. It answers questions with inline citations to the source text, abstains when the answer is not in the documents, treats retrieved text as data rather than instructions, and reports real retrieval and answer-quality metrics.
 
-> Live demo: _(link added after deploy)_
+> Live demo: [regrag-aml.streamlit.app](https://regrag-aml.streamlit.app/)
 
 ## Why this project
 
