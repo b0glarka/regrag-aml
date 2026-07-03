@@ -121,6 +121,14 @@ question = st.text_input(
     placeholder="e.g. What must financial institutions do for customer due diligence?",
 )
 
+if not question:
+    st.info(
+        "How it works: RegRAG retrieves the most relevant passages from the FATF "
+        "Recommendations, then answers only from those passages with inline page "
+        "citations. If the documents do not cover your question, it says so and points "
+        "you to FATF instead of guessing. Try an example above, or ask your own."
+    )
+
 if question:
     try:
         with st.spinner("Retrieving and answering..."):
