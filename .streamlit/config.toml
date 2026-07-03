@@ -1,3 +1,10 @@
 [theme]
 primaryColor = "#1F6FEB"
 font = "sans serif"
+
+[server]
+# The deployed app does not need Streamlit's source file-watcher (Streamlit
+# Cloud redeploys on git push). Disabling it also stops the harmless
+# "No module named 'torchvision'" warnings the watcher raises when it inspects
+# optional transformers vision modules we never use.
+fileWatcherType = "none"
