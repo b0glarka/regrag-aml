@@ -1,0 +1,939 @@
+{
+  "aggregates": {
+    "n_items": 35,
+    "n_answerable": 30,
+    "n_out_of_scope": 5,
+    "k": 8,
+    "abstain_threshold": 0.66,
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "generator": "openrouter:meta-llama/llama-3.3-70b-instruct",
+    "judge_model": "claude-haiku-4-5",
+    "judge_rubric_version": "v1.0",
+    "retrieval": {
+      "recall@k": 0.967,
+      "mrr": 0.62
+    },
+    "citations": {
+      "hit_rate": 0.733,
+      "recall": 0.558,
+      "precision": 0.339
+    },
+    "answer": {
+      "faithfulness": 0.817,
+      "f1_lexical": 0.136,
+      "em_lexical": 0.0,
+      "false_abstention_rate": 0.0
+    },
+    "abstention": {
+      "out_of_scope_handled": 0.9
+    }
+  },
+  "by_difficulty": {
+    "easy": {
+      "n": 9,
+      "recall@k": 1.0,
+      "citation_recall": 0.537,
+      "faithfulness": 0.944
+    },
+    "medium": {
+      "n": 17,
+      "recall@k": 0.941,
+      "citation_recall": 0.603,
+      "faithfulness": 0.794
+    },
+    "hard": {
+      "n": 4,
+      "recall@k": 1.0,
+      "citation_recall": 0.416,
+      "faithfulness": 0.625
+    }
+  },
+  "items": [
+    {
+      "id": "q001",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.1",
+      "abstained": false,
+      "max_similarity": 0.794,
+      "cited_pages": [
+        8,
+        10,
+        31
+      ],
+      "expected_pages": [
+        31,
+        33
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 0.5,
+      "citation_precision": 0.333,
+      "f1": 0.194,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, accurately reflecting the purpose of the risk-based approach as described in the FATF Recommendations."
+    },
+    {
+      "id": "q002",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.1",
+      "abstained": false,
+      "max_similarity": 0.812,
+      "cited_pages": [],
+      "expected_pages": [
+        33
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.105,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, accurately citing the requirements for countries to address higher ML/TF risks through designation of authorities, risk-based approaches, and requirements for financial institutions and DNFBPs."
+    },
+    {
+      "id": "q003",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.10",
+      "abstained": false,
+      "max_similarity": 0.792,
+      "cited_pages": [
+        14,
+        69
+      ],
+      "expected_pages": [
+        14
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.136,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All four circumstances for applying CDD measures are directly quoted from page 14, and the statement about existing customers on the basis of materiality and risk is directly supported by page 69."
+    },
+    {
+      "id": "q004",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.10",
+      "abstained": false,
+      "max_similarity": 0.735,
+      "cited_pages": [
+        15
+      ],
+      "expected_pages": [
+        14
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.5,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.247,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer directly quotes the relevant passage from page 15 of the sources, accurately capturing the requirement that financial institutions should not open accounts, commence business relations, or perform transactions if unable to complete CDD, and should consider making a suspicious transaction report."
+    },
+    {
+      "id": "q005",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.11",
+      "abstained": false,
+      "max_similarity": 0.823,
+      "cited_pages": [],
+      "expected_pages": [
+        15
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.5,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.069,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, which consistently state that financial institutions must maintain transaction records and CDD information for at least five years."
+    },
+    {
+      "id": "q006",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.12",
+      "abstained": false,
+      "max_similarity": 0.756,
+      "cited_pages": [
+        16,
+        31,
+        75,
+        136
+      ],
+      "expected_pages": [
+        16
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.25,
+      "f1": 0.141,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the sources, including the four specific measures for foreign PEPs, the definition of foreign PEPs, and the attribution to Recommendation 12."
+    },
+    {
+      "id": "q007",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.13",
+      "abstained": false,
+      "max_similarity": 0.755,
+      "cited_pages": [
+        17,
+        128
+      ],
+      "expected_pages": [
+        17
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.5,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.25,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer accurately cites the prohibition on correspondent banking with shell banks from page 17, but the definition of shell banks on page 128 is incomplete—it only defines 'Correspondent banking' and 'Country,' not 'shell banks,' so the characterization of shell banks as having 'no physical presence and not allowed to operate in the country where incorporated' is not directly supported by the provided sources."
+    },
+    {
+      "id": "q008",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.14",
+      "abstained": false,
+      "max_similarity": 0.765,
+      "cited_pages": [
+        17,
+        79,
+        81,
+        86,
+        135
+      ],
+      "expected_pages": [
+        17
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.167,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.2,
+      "f1": 0.095,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer is mostly grounded in the sources, but the claim about STR filing 'in any country affected by suspicious payments' conflates MVTS providers with VASPs (page 79 discusses VASPs, not MVTS), and the reference to page 79 for originator/beneficiary information requirements appears to discuss VASPs rather than traditional MVTS."
+    },
+    {
+      "id": "q009",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.16",
+      "abstained": false,
+      "max_similarity": 0.774,
+      "cited_pages": [
+        81,
+        82
+      ],
+      "expected_pages": [
+        17,
+        18,
+        80,
+        81
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 0.25,
+      "citation_precision": 0.5,
+      "f1": 0.069,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer accurately reflects the source requirements for cross-border and domestic payments, but overstates the requirement for domestic payments by not fully capturing the conditional nature—the sources indicate originator information should be included 'unless this information can be made available by other means,' which the answer presents somewhat ambiguously."
+    },
+    {
+      "id": "q010",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.20",
+      "abstained": false,
+      "max_similarity": 0.78,
+      "cited_pages": [
+        20,
+        66
+      ],
+      "expected_pages": [
+        19
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.154,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer accurately reflects the sources: Recommendation 20 requires reporting suspicions to the FIU, and the Interpretive Note to Recommendation 10 confirms that financial institutions should make a suspicious transaction report (STR) to the FIU when suspecting money laundering or terrorist financing."
+    },
+    {
+      "id": "q011",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.22",
+      "abstained": false,
+      "max_similarity": 0.722,
+      "cited_pages": [
+        19,
+        93,
+        94
+      ],
+      "expected_pages": [
+        19,
+        20
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.5,
+      "citation_hit": 1.0,
+      "citation_recall": 0.5,
+      "citation_precision": 0.333,
+      "f1": 0.097,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer correctly states the thresholds and that CDD requirements apply to DNFBPs in specific situations, but it incompletely represents the sources by omitting that the answer only covers casinos and precious metals/stones dealers, without mentioning that page 19 indicates there are additional situations listed under (b), (c), etc. that are not shown in the provided excerpts."
+    },
+    {
+      "id": "q012",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.24",
+      "abstained": false,
+      "max_similarity": 0.802,
+      "cited_pages": [
+        22,
+        98
+      ],
+      "expected_pages": [
+        22
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.253,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All claims in the answer are directly supported by the sources: the requirement for adequate, accurate and up-to-date beneficial ownership information accessible to competent authorities (page 22), the option of a register or alternative mechanism (page 22), and the requirement for companies to obtain and hold such information (page 98)."
+    },
+    {
+      "id": "q013",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.25",
+      "abstained": false,
+      "max_similarity": 0.802,
+      "cited_pages": [],
+      "expected_pages": [
+        22,
+        102,
+        103
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.089,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer accurately reflects the sources regarding beneficial ownership information and basic information requirements, but the citation attributions are inconsistent with the actual source structure—the sources provided are all from pages 102-105 without distinct numbered sources, yet the answer cites 'Source 1,' 'Source 3,' 'Source 4,' and 'Source 6' as if they were separate documents."
+    },
+    {
+      "id": "q014",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.29",
+      "abstained": false,
+      "max_similarity": 0.785,
+      "cited_pages": [
+        24,
+        109,
+        111
+      ],
+      "expected_pages": [
+        24
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.333,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.333,
+      "f1": 0.071,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, including the FIU's role as a national centre for receipt and analysis, its access to information, its central role in AML/CFT networks, Egmont Group membership, and its functions regarding suspicious transaction reports."
+    },
+    {
+      "id": "q015",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.31",
+      "abstained": false,
+      "max_similarity": 0.77,
+      "cited_pages": [
+        25,
+        112
+      ],
+      "expected_pages": [
+        25
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.2,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.108,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided source excerpts from pages 25, 112, and 113, with accurate citations and no unsupported additions."
+    },
+    {
+      "id": "q016",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.32",
+      "abstained": false,
+      "max_similarity": 0.728,
+      "cited_pages": [
+        25,
+        114
+      ],
+      "expected_pages": [
+        25
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.167,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the sources, including the declaration/disclosure system requirement, the USD/EUR 15,000 threshold, and the authority to stop or restrain currency related to terrorist financing or money laundering."
+    },
+    {
+      "id": "q017",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.33",
+      "abstained": false,
+      "max_similarity": 0.761,
+      "cited_pages": [
+        26
+      ],
+      "expected_pages": [
+        26
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 1.0,
+      "f1": 0.161,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer directly quotes and accurately summarizes Recommendation 33 from page 26, listing all the specific statistics categories mentioned in the source without adding unsupported claims."
+    },
+    {
+      "id": "q018",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.37",
+      "abstained": false,
+      "max_similarity": 0.717,
+      "cited_pages": [
+        27,
+        119
+      ],
+      "expected_pages": [
+        27
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.186,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer accurately reflects the sources, which explicitly state that countries should not refuse mutual legal assistance solely on the ground that the offence involves fiscal matters (page 27) and that competent authorities should not refuse assistance on grounds that the request involves fiscal matters (page 119)."
+    },
+    {
+      "id": "q019",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.38",
+      "abstained": false,
+      "max_similarity": 0.772,
+      "cited_pages": [
+        28,
+        118
+      ],
+      "expected_pages": [
+        28
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.089,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided source excerpts from pages 28 and 118, with accurate citations and no unsupported additions."
+    },
+    {
+      "id": "q020",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "INR.1",
+      "abstained": false,
+      "max_similarity": 0.718,
+      "cited_pages": [
+        31,
+        33
+      ],
+      "expected_pages": [
+        31,
+        33,
+        35
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 0.667,
+      "citation_precision": 1.0,
+      "f1": 0.136,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All claims in the answer are directly supported by the source excerpts: simplified measures are allowed when risks are lower (p. 31), countries should identify lower risk areas through risk assessments (p. 31), simplified measures apply to risk-based FATF Recommendations when lower risk is identified (p. 33), and simplified measures should not be permitted when there is suspicion of money laundering or terrorist financing (p. 31)."
+    },
+    {
+      "id": "q021",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "R.40",
+      "abstained": false,
+      "max_similarity": 0.716,
+      "cited_pages": [
+        119
+      ],
+      "expected_pages": [
+        29,
+        30,
+        119
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.333,
+      "citation_hit": 1.0,
+      "citation_recall": 0.333,
+      "citation_precision": 1.0,
+      "f1": 0.12,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer correctly states that the sources do not explicitly provide the objective of Recommendation 40, but it overstates what the sources contain by claiming the Interpretive Note discusses 'principles applicable to all forms of international cooperation' as if this were the stated objective, when the sources only show these are principles within the note, not the stated objective itself."
+    },
+    {
+      "id": "q022",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "INR.1",
+      "abstained": false,
+      "max_similarity": 0.772,
+      "cited_pages": [
+        15,
+        34,
+        35
+      ],
+      "expected_pages": [
+        35
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.143,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.333,
+      "f1": 0.039,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer correctly cites documentation requirements for proliferation financing risk assessments from page 35, but then makes unsupported claims about record retention (page 15 discusses five years but in a different context) and overstates what the sources cover regarding the broader risk-based approach documentation requirements."
+    },
+    {
+      "id": "q023",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "INR.1",
+      "abstained": false,
+      "max_similarity": 0.673,
+      "cited_pages": [
+        31,
+        72,
+        73
+      ],
+      "expected_pages": [
+        31,
+        35
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.5,
+      "citation_hit": 1.0,
+      "citation_recall": 0.5,
+      "citation_precision": 0.333,
+      "f1": 0.096,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer is mostly grounded in the sources, but it misattributes specific examples of enhanced measures to page 72 and 73 when some examples (like obtaining information on source of funds, senior management approval, and enhanced monitoring patterns) actually appear on page 73 under the enhanced measures section, not simplified measures."
+    },
+    {
+      "id": "q024",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "R.26-R.31",
+      "abstained": false,
+      "max_similarity": 0.755,
+      "cited_pages": [
+        10,
+        11,
+        18,
+        24,
+        37,
+        78,
+        121
+      ],
+      "expected_pages": [
+        23,
+        24,
+        25
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.125,
+      "citation_hit": 1.0,
+      "citation_recall": 0.333,
+      "citation_precision": 0.143,
+      "f1": 0.162,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, including the identification of competent authorities, financial supervisors, and law enforcement authorities, along with their specific responsibilities as cited."
+    },
+    {
+      "id": "q025",
+      "type": "in_scope",
+      "difficulty": "hard",
+      "recommendation": "R.10+R.16",
+      "abstained": false,
+      "max_similarity": 0.731,
+      "cited_pages": [
+        14,
+        72,
+        79
+      ],
+      "expected_pages": [
+        14,
+        17,
+        18
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.2,
+      "citation_hit": 1.0,
+      "citation_recall": 0.333,
+      "citation_precision": 0.333,
+      "f1": 0.108,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer accurately cites CDD requirements from the sources but the claim about wire transfer rules (citing page 79 of Source 6) actually discusses virtual asset transfers, not traditional wire transfers, which is a subtle but meaningful distinction that could mislead about the scope of wire transfer rules in AML enforcement."
+    },
+    {
+      "id": "q026",
+      "type": "in_scope",
+      "difficulty": "hard",
+      "recommendation": "R.29+R.26-28",
+      "abstained": false,
+      "max_similarity": 0.737,
+      "cited_pages": [
+        106,
+        109,
+        121
+      ],
+      "expected_pages": [
+        24,
+        25
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.2,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.067,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, accurately distinguishing FIU functions (receipt and analysis of suspicious transaction reports) from supervisory authority functions (ensuring compliance and supervising institutions), with appropriate page citations."
+    },
+    {
+      "id": "q027",
+      "type": "in_scope",
+      "difficulty": "hard",
+      "recommendation": "R.26-R.28 + INR.1",
+      "abstained": false,
+      "max_similarity": 0.877,
+      "cited_pages": [
+        10,
+        31,
+        34,
+        106
+      ],
+      "expected_pages": [
+        31,
+        33,
+        35
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.25,
+      "citation_hit": 1.0,
+      "citation_recall": 0.333,
+      "citation_precision": 0.25,
+      "f1": 0.045,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer is mostly grounded in the sources, but the final sentence about 'overall' effectiveness and mitigation (citing page 10) overstates what page 10 actually says—it discusses applying a risk-based approach generally, not specifically about how it helps mitigate ML/TF risks through supervision."
+    },
+    {
+      "id": "q028",
+      "type": "in_scope",
+      "difficulty": "hard",
+      "recommendation": "R.24+R.25",
+      "abstained": false,
+      "max_similarity": 0.708,
+      "cited_pages": [
+        22,
+        102,
+        103
+      ],
+      "expected_pages": [
+        22
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.333,
+      "f1": 0.103,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer is mostly grounded in the sources but includes an unsupported claim that beneficial ownership and trust transparency rules 'work together to prevent the misuse of legal persons and arrangements' as an integrated mechanism—the sources address these as separate requirements rather than describing their interactive operation."
+    },
+    {
+      "id": "q029",
+      "type": "out_of_scope",
+      "difficulty": "easy",
+      "recommendation": "",
+      "abstained": false,
+      "max_similarity": 0.68,
+      "cited_pages": [],
+      "expected_pages": [],
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer appropriately abstains from providing information not in the sources and correctly directs the user to the FATF website for current grey list information, making no unsupported factual claims.",
+      "handled": 1.0
+    },
+    {
+      "id": "q030",
+      "type": "out_of_scope",
+      "difficulty": "easy",
+      "recommendation": "",
+      "abstained": false,
+      "max_similarity": 0.685,
+      "cited_pages": [
+        14,
+        66
+      ],
+      "expected_pages": [],
+      "faithful_label": "partial",
+      "faithful_score": 0.5,
+      "faithful_rationale": "The answer correctly states that the sources do not provide an EU AML regulation definition, but then attributes CDD measures to FATF Recommendations rather than clarifying that the sources are about FATF standards, not EU regulations, which could mislead readers about the source's scope.",
+      "handled": 0.5
+    },
+    {
+      "id": "q031",
+      "type": "out_of_scope",
+      "difficulty": "easy",
+      "recommendation": "",
+      "abstained": true,
+      "max_similarity": 0.641,
+      "cited_pages": [],
+      "expected_pages": [],
+      "handled": 1.0,
+      "faithful_label": "gate_abstained"
+    },
+    {
+      "id": "q032",
+      "type": "out_of_scope",
+      "difficulty": "medium",
+      "recommendation": "",
+      "abstained": false,
+      "max_similarity": 0.678,
+      "cited_pages": [],
+      "expected_pages": [],
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer correctly states that the FATF Recommendations do not explicitly recommend machine learning models for transaction monitoring, which is supported by the provided sources that contain no mention of machine learning for this purpose.",
+      "handled": 1.0
+    },
+    {
+      "id": "q033",
+      "type": "out_of_scope",
+      "difficulty": "medium",
+      "recommendation": "",
+      "abstained": false,
+      "max_similarity": 0.666,
+      "cited_pages": [
+        0,
+        1,
+        2,
+        7,
+        9,
+        77,
+        151
+      ],
+      "expected_pages": [],
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer correctly states that the provided sources do not contain information about approved blockchain analytics vendors by FATF, which is accurate based on the source excerpts provided.",
+      "handled": 1.0
+    },
+    {
+      "id": "q034",
+      "type": "refutation",
+      "difficulty": "medium",
+      "recommendation": "R.15",
+      "abstained": false,
+      "max_similarity": 0.74,
+      "cited_pages": [
+        140
+      ],
+      "expected_pages": [
+        17,
+        78
+      ],
+      "recall@k": 1.0,
+      "mrr": 0.143,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.188,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer correctly states that FATF Recommendations do not mention zero-knowledge proofs and do not require their use by cryptocurrency exchanges, which is supported by the sources provided that contain no reference to this technology."
+    },
+    {
+      "id": "q035",
+      "type": "refutation",
+      "difficulty": "medium",
+      "recommendation": "R.10",
+      "abstained": false,
+      "max_similarity": 0.727,
+      "cited_pages": [
+        81,
+        93
+      ],
+      "expected_pages": [
+        14
+      ],
+      "recall@k": 0.0,
+      "mrr": 0.0,
+      "citation_hit": 0.0,
+      "citation_recall": 0.0,
+      "citation_precision": 0.0,
+      "f1": 0.328,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "The answer correctly states that FATF does not specify a €10,000 cash reporting threshold and accurately cites the specific thresholds mentioned in the sources (€3,000 for casinos, €15,000 for precious metals/stones dealers, and €1,000 de minimis threshold)."
+    }
+  ]
+}

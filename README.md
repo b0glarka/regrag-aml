@@ -41,12 +41,41 @@ FATF corpus (PDF)
 - Corpus: FATF "The FATF Recommendations" (the 40 Recommendations). One corpus, one embedding model, one vector store. The PDF is pulled from a pinned Internet Archive (Wayback Machine) snapshot and verified by SHA-256, so the corpus is reproducible and independent of FATF's live CDN. FATF publishes no data API; a pinned, checksummed archive snapshot is the more durable source for a static standards document.
 - Embeddings: local `sentence-transformers` (no API cost, fully offline for eval).
 - Vector store: Chroma (persisted locally).
-- Generation: an OpenRouter-hosted model (Llama 3.3 70B by default) behind a provider-agnostic client that also targets Together AI and any OpenAI-compatible endpoint. For the eval, OpenRouter routing is pinned so a run cannot silently switch upstream vendors.
+- Generation: an OpenRouter-hosted model (Llama 3.3 70B by default) behind a provider-agnostic client that also targets Together AI and any OpenAI-compatible endpoint. OpenRouter routing can be pinned to a single upstream provider for reproducible evaluation.
 - Faithfulness judge: Anthropic Haiku 4.5 with a versioned rubric.
 
 ## Evaluation
 
-_(Results table added on Day 2. Reports retrieval quality — recall@k, MRR — and answer quality — citation-correctness / faithfulness via an LLM judge validated against a small human-labeled subset. Numbers are indicative on a hand-written gold set, not a benchmark.)_
+The system is scored against a hand-written gold set of 35 questions: 30 answerable (easy, medium, and hard, including multi-Recommendation synthesis), some of them false-premise "refutation" questions the documents can correct, and 5 out-of-scope questions that should be declined. Each answerable item is labeled with its source Recommendation, difficulty, and expected page(s); `expected_pages` include the Recommendation statement and its Interpretive Note where both contain the answer.
+
+Metrics:
+- Retrieval: recall@8 (a correct page in the top 8) and MRR, against the expected pages.
+- Answer faithfulness: an LLM judge (Haiku 4.5, rubric v1.0) grades whether every claim is grounded in the retrieved sources. This is the primary answer-quality metric, because lexical-overlap metrics penalize correct paraphrase.
+- Citations: hit rate (does the answer cite at least one correct page) as the primary signal, with strict page-level recall and precision as secondary.
+- Out-of-scope: whether the system declines without fabricating.
+
+Results (35-item gold set; indicative, not a benchmark):
+
+| Metric | Value |
+|---|---|
+| Retrieval recall@8 | 0.97 |
+| Retrieval MRR | 0.62 |
+| Answer faithfulness (LLM judge) | 0.82 |
+| Citation hit rate | 0.73 |
+| Citation recall (strict) | 0.56 |
+| Citation precision | 0.34 |
+| Out-of-scope handled (no fabrication) | 0.90 |
+| False-abstention rate | 0.00 |
+
+Across all 30 answerable questions the judge found zero unfaithful answers, so there were no hallucinations. The faithfulness score below 1.0 reflects minor over-elaboration graded "partial," not invented facts.
+
+Configuration: `bge-small-en-v1.5` embeddings, Llama 3.3 70B (via OpenRouter) generation, Haiku 4.5 judge, k = 8, abstain threshold 0.66 (tuned on the gold set with `tune_threshold.py`).
+
+Gold-set coverage of the corpus (23 of the 40 Recommendations; see the gaps):
+
+![Gold-set coverage of the FATF Recommendations](reports/figures/coverage_heatmap.png)
+
+Reproduce with `uv run python run_eval.py`, which writes `results/eval_results.json` and `reports/eval_report.md`.
 
 ## How to run locally
 
@@ -59,13 +88,26 @@ uv sync
 # 2. Configure API keys
 cp .env.example .env   # then fill in the keys you need (see .env.example)
 
-# 3. Download the corpus (gitignored; documented, reproducible download step)
+# 3. Download the corpus (idempotent; pinned Wayback snapshot, SHA-256 verified)
 uv run python download_corpus.py
 
-# 4. Sanity check: extract the corpus text
-uv run python -m regrag.ingest
+# 4. Build the vector index
+uv run python build_index.py
 
-# Further steps (build index, launch app) are added as the pipeline lands.
+# 5. Launch the app
+uv run streamlit run app.py
+```
+
+Ask from the command line instead of the app:
+
+```bash
+uv run python ask.py "What must financial institutions do for customer due diligence?"
+```
+
+Run the evaluation (writes `results/` and `reports/`):
+
+```bash
+uv run python run_eval.py
 ```
 
 To refresh `requirements.txt` after changing dependencies (the project itself is excluded so the deploy installs only third-party packages):
@@ -78,7 +120,13 @@ Prefer plain pip? `python -m venv .venv` then `pip install -r requirements.txt` 
 
 ## Limitations and next steps
 
-_(To be written honestly: small hand-written gold set, single corpus, no reranking, single embedding model, judge agreement caveats, and what a production version would add.)_
+- The gold set is small (35 items) and hand-written. The numbers are indicative, not a benchmark, and per-difficulty breakdowns rest on small counts.
+- Coverage is bounded: the gold set touches 23 of the 40 Recommendations (see the heatmap), with gaps including R.6 to R.9, R.17 to R.21, and R.34 to R.36.
+- One embedding model, one vector store, no reranking, by design. A production version would add a reranker and compare embedding models.
+- The generator occasionally omits an inline citation on very short answers (3 of 30 here), which lowers strict citation recall; citations are matched at the page level, which is harsh when a Recommendation spans several pages, so the hit rate is the fairer read.
+- One out-of-scope question (the EU AML definition of customer due diligence) was answered with FATF's definition rather than a clean "not in this document." It did not fabricate, but it conflated two frameworks.
+- The faithfulness judge is a single model (Haiku 4.5) with a v1.0 rubric. The next validation step is to hand-label a subset of answers and report judge-versus-human agreement (Cohen's kappa), the same validation used in the capstone this reuses.
+- This is not legal or compliance advice. It answers only from one version (October 2025) of one document.
 
 ## License
 
