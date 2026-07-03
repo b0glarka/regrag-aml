@@ -10,12 +10,45 @@ abstention when the corpus does not cover the question.
 
 from __future__ import annotations
 
+import os
+
 import streamlit as st
 
 from regrag import config, store
 from regrag.generate import answer
 
+# Secrets bridge: on Streamlit Community Cloud, API keys arrive via st.secrets,
+# not as environment variables. Copy them into the environment so the rest of
+# the code (which reads os.getenv) works unchanged. Locally this is a no-op.
+try:
+    for _key in ("OPENROUTER_API_KEY", "ANTHROPIC_API_KEY", "TOGETHER_API_KEY"):
+        if _key in st.secrets and not os.getenv(_key):
+            os.environ[_key] = str(st.secrets[_key])
+except Exception:
+    pass
+
 st.set_page_config(page_title="RegRAG-AML", page_icon="🔎")
+
+
+@st.cache_resource(show_spinner="Preparing the index (first load only)...")
+def ensure_index() -> int:
+    """Build the vector index if it is missing.
+
+    On the cloud the corpus and store are gitignored, so the app downloads the
+    corpus and builds the index on first run. Locally, where the index already
+    exists, this is a no-op.
+    """
+    collection = store.get_collection()
+    if collection.count() == 0:
+        import build_index
+        import download_corpus
+
+        if not download_corpus._already_present() and not download_corpus.download():
+            raise RuntimeError("corpus download failed")
+        build_index.main()
+        collection = store.get_collection()
+    return collection.count()
+
 
 st.title("RegRAG-AML")
 st.caption(
@@ -24,12 +57,10 @@ st.caption(
     "when the documents do not cover a question."
 )
 
-# The vector index must exist (.chroma/ is gitignored; see README).
-if store.get_collection().count() == 0:
-    st.error(
-        "The vector index is empty. From the repo root, run "
-        "`python download_corpus.py` then `python build_index.py`, then reload."
-    )
+try:
+    ensure_index()
+except Exception as exc:
+    st.error(f"Could not prepare the vector index: {exc}")
     st.stop()
 
 question = st.text_input(
