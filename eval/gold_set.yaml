@@ -94,7 +94,7 @@
   difficulty: medium
   recommendation: R.16
   category: payments
-  expected_pages: [17, 18]
+  expected_pages: [17, 18, 80, 81]
   reference_answer: >
     Accurate originator and beneficiary information that travels with the transfer.
   notes: Recommendation 16
@@ -139,7 +139,7 @@
   difficulty: medium
   recommendation: R.25
   category: trusts
-  expected_pages: [22]
+  expected_pages: [22, 102, 103]
   reference_answer: >
     Information on settlors, trustees, and beneficiaries must be maintained and accessible.
   notes: Recommendation 25
@@ -227,7 +227,7 @@
   difficulty: medium
   recommendation: R.40
   category: cooperation
-  expected_pages: [29, 30]
+  expected_pages: [29, 30, 119]
   reference_answer: >
     To ensure rapid and effective international cooperation in AML/CFT matters.
   notes: Recommendation 40

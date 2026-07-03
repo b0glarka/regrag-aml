@@ -46,12 +46,17 @@ EMBEDDING_MODEL = os.getenv("REGRAG_EMBEDDING_MODEL", "BAAI/bge-small-en-v1.5")
 COLLECTION_NAME = "fatf_recommendations"
 
 # --- Retrieval -------------------------------------------------------------
-TOP_K = 5                 # chunks retrieved per query
-# Below this max similarity, the assistant abstains ("not covered in these
-# documents") instead of answering. Provisional value: on bge-small, relevant
-# hits score ~0.75-0.79 and clearly out-of-scope queries top out ~0.53. Tuned
-# properly against the gold set on Day 2.
-ABSTAIN_SIMILARITY_THRESHOLD = 0.60
+# Chunks retrieved per query. The corpus interleaves terse Recommendation
+# statements with long Interpretive Notes; the dense notes crowd the top-5, so
+# k=8 gives the retriever room to surface both for a given Recommendation.
+TOP_K = 8
+# Below this max similarity, the retrieval gate abstains before calling the LLM.
+# Tuned on the gold set: answerable questions score >= 0.673, so 0.66 keeps the
+# cheap gate from ever refusing a real question. Domain-adjacent out-of-scope
+# questions (the gold traps) score 0.67-0.69 and intentionally pass this gate;
+# the LLM's scope-refusal prompt (see generate.py) is the semantic backstop for
+# those. The gate exists to cheaply catch clearly off-topic queries (< 0.66).
+ABSTAIN_SIMILARITY_THRESHOLD = 0.66
 
 # --- Generation ------------------------------------------------------------
 # Provider-agnostic: the LLMClient targets any OpenAI-compatible endpoint.
