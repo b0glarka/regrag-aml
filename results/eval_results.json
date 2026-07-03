@@ -1,7 +1,7 @@
 {
   "aggregates": {
-    "n_items": 35,
-    "n_answerable": 30,
+    "n_items": 37,
+    "n_answerable": 32,
     "n_out_of_scope": 5,
     "k": 8,
     "abstain_threshold": 0.66,
@@ -10,17 +10,17 @@
     "judge_model": "claude-haiku-4-5",
     "judge_rubric_version": "v1.0",
     "retrieval": {
-      "recall@k": 0.967,
-      "mrr": 0.62
+      "recall@k": 0.969,
+      "mrr": 0.644
     },
     "citations": {
-      "hit_rate": 0.733,
-      "recall": 0.558,
-      "precision": 0.339
+      "hit_rate": 0.75,
+      "recall": 0.57,
+      "precision": 0.365
     },
     "answer": {
-      "faithfulness": 0.817,
-      "f1_lexical": 0.136,
+      "faithfulness": 0.828,
+      "f1_lexical": 0.139,
       "em_lexical": 0.0,
       "false_abstention_rate": 0.0
     },
@@ -30,16 +30,16 @@
   },
   "by_difficulty": {
     "easy": {
-      "n": 9,
+      "n": 10,
       "recall@k": 1.0,
-      "citation_recall": 0.537,
-      "faithfulness": 0.944
+      "citation_recall": 0.583,
+      "faithfulness": 0.95
     },
     "medium": {
-      "n": 17,
-      "recall@k": 0.941,
-      "citation_recall": 0.603,
-      "faithfulness": 0.794
+      "n": 18,
+      "recall@k": 0.944,
+      "citation_recall": 0.597,
+      "faithfulness": 0.806
     },
     "hard": {
       "n": 4,
@@ -689,6 +689,58 @@
       "faithful_label": "faithful",
       "faithful_score": 1.0,
       "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, including the identification of competent authorities, financial supervisors, and law enforcement authorities, along with their specific responsibilities as cited."
+    },
+    {
+      "id": "q036",
+      "type": "in_scope",
+      "difficulty": "medium",
+      "recommendation": "INR.15",
+      "abstained": false,
+      "max_similarity": 0.752,
+      "cited_pages": [
+        78
+      ],
+      "expected_pages": [
+        78,
+        79
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 0.5,
+      "citation_precision": 1.0,
+      "f1": 0.163,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the source excerpts from page 78-79, including licensing/registration requirements, prevention of criminals in management, sanctions for unlicensed operators, adequate regulation and supervision, risk-based supervision, and requirements for VASPs to identify and mitigate risks."
+    },
+    {
+      "id": "q037",
+      "type": "in_scope",
+      "difficulty": "easy",
+      "recommendation": "INR.15",
+      "abstained": false,
+      "max_similarity": 0.862,
+      "cited_pages": [
+        17,
+        78
+      ],
+      "expected_pages": [
+        78
+      ],
+      "recall@k": 1.0,
+      "mrr": 1.0,
+      "citation_hit": 1.0,
+      "citation_recall": 1.0,
+      "citation_precision": 0.5,
+      "f1": 0.221,
+      "em": 0.0,
+      "false_abstention": 0.0,
+      "faithful_label": "faithful",
+      "faithful_score": 1.0,
+      "faithful_rationale": "All factual claims in the answer are directly supported by the provided sources, accurately citing the treatment of virtual assets as property/funds, the risk-based approach requirement, and VASP regulation/monitoring obligations."
     },
     {
       "id": "q025",

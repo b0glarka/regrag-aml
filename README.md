@@ -46,7 +46,7 @@ FATF corpus (PDF)
 
 ## Evaluation
 
-The system is scored against a hand-written gold set of 35 questions: 30 answerable (easy, medium, and hard, including multi-Recommendation synthesis), some of them false-premise "refutation" questions the documents can correct, and 5 out-of-scope questions that should be declined. Each answerable item is labeled with its source Recommendation, difficulty, and expected page(s); `expected_pages` include the Recommendation statement and its Interpretive Note where both contain the answer.
+The system is scored against a hand-written gold set of 37 questions: 32 answerable (easy, medium, and hard, including multi-Recommendation synthesis), some of them false-premise "refutation" questions the documents can correct, and 5 out-of-scope questions that should be declined. Each answerable item is labeled with its source Recommendation, difficulty, and expected page(s); `expected_pages` include the Recommendation statement and its Interpretive Note where both contain the answer.
 
 Metrics:
 - Retrieval: recall@8 (a correct page in the top 8) and MRR, against the expected pages.
@@ -54,20 +54,20 @@ Metrics:
 - Citations: hit rate (does the answer cite at least one correct page) as the primary signal, with strict page-level recall and precision as secondary.
 - Out-of-scope: whether the system declines without fabricating.
 
-Results (35-item gold set; indicative, not a benchmark):
+Results (37-item gold set; indicative, not a benchmark):
 
 | Metric | Value |
 |---|---|
 | Retrieval recall@8 | 0.97 |
-| Retrieval MRR | 0.62 |
-| Answer faithfulness (LLM judge) | 0.82 |
-| Citation hit rate | 0.73 |
-| Citation recall (strict) | 0.56 |
-| Citation precision | 0.34 |
+| Retrieval MRR | 0.64 |
+| Answer faithfulness (LLM judge) | 0.83 |
+| Citation hit rate | 0.75 |
+| Citation recall (strict) | 0.57 |
+| Citation precision | 0.37 |
 | Out-of-scope handled (no fabrication) | 0.90 |
 | False-abstention rate | 0.00 |
 
-Across all 30 answerable questions the judge found zero unfaithful answers, so there were no hallucinations. The faithfulness score below 1.0 reflects minor over-elaboration graded "partial," not invented facts.
+Across all 32 answerable questions the judge found zero unfaithful answers, so there were no hallucinations. The faithfulness score below 1.0 reflects minor over-elaboration graded "partial," not invented facts.
 
 Configuration: `bge-small-en-v1.5` embeddings, Llama 3.3 70B (via OpenRouter) generation, Haiku 4.5 judge, k = 8, abstain threshold 0.66 (tuned on the gold set with `tune_threshold.py`).
 

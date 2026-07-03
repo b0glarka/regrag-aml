@@ -265,6 +265,31 @@
     FIUs, supervisors, law enforcement authorities, and other competent authorities.
   notes: Cross-institutional roles
 
+- id: q036
+  question: What must countries do to regulate virtual asset service providers (VASPs)?
+  type: in_scope
+  difficulty: medium
+  recommendation: INR.15
+  category: virtual_assets
+  expected_pages: [78, 79]
+  reference_answer: >
+    VASPs should be licensed or registered and supervised for AML/CFT compliance, with
+    supervisors empowered to inspect, compel information, and impose sanctions including
+    withdrawing authorization.
+  notes: Interpretive Note R15 (new technologies)
+
+- id: q037
+  question: How should countries treat virtual assets under the FATF Recommendations?
+  type: in_scope
+  difficulty: easy
+  recommendation: INR.15
+  category: virtual_assets
+  expected_pages: [78]
+  reference_answer: >
+    As property, proceeds, funds, or corresponding value, applying the relevant AML/CFT
+    measures to virtual asset activities.
+  notes: Interpretive Note R15 (new technologies)
+
 # ---------------- SYNTHESIS (HARD) ----------------
 
 - id: q025
