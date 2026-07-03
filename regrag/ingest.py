@@ -135,7 +135,10 @@ def load_pages(pdf_path: Path | None = None) -> list[dict]:
     for label, lines in zip(page_labels, page_lines):
         kept = [line for line in lines if _line_key(line) not in boilerplate]
         text = "\n".join(kept).strip()
-        if text:
+        # Skip front matter that precedes printed page 1 (the cover gets a
+        # non-positive label under the physical->printed offset); it has no
+        # citable page number.
+        if text and label >= 1:
             records.append({"page": label, "text": text})
     return records
 

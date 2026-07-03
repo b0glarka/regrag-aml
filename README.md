@@ -58,13 +58,13 @@ Results (37-item gold set; indicative, not a benchmark):
 
 | Metric | Value |
 |---|---|
-| Retrieval recall@8 | 0.97 |
-| Retrieval MRR | 0.64 |
-| Answer faithfulness (LLM judge) | 0.83 |
-| Citation hit rate | 0.75 |
-| Citation recall (strict) | 0.57 |
-| Citation precision | 0.37 |
-| Out-of-scope handled (no fabrication) | 0.90 |
+| Retrieval recall@8 | 1.00 |
+| Retrieval MRR | 0.65 |
+| Answer faithfulness (LLM judge) | 0.86 |
+| Citation hit rate | 0.72 |
+| Citation recall (strict) | 0.58 |
+| Citation precision | 0.38 |
+| Out-of-scope handled (no fabrication) | 1.00 |
 | False-abstention rate | 0.00 |
 
 Across all 32 answerable questions the judge found zero unfaithful answers, so there were no hallucinations. The faithfulness score below 1.0 reflects minor over-elaboration graded "partial," not invented facts.
@@ -123,8 +123,7 @@ Prefer plain pip? `python -m venv .venv` then `pip install -r requirements.txt` 
 - The gold set is small (35 items) and hand-written. The numbers are indicative, not a benchmark, and per-difficulty breakdowns rest on small counts.
 - Coverage is bounded: the gold set touches 23 of the 40 Recommendations (see the heatmap), with gaps including R.6 to R.9, R.17 to R.21, and R.34 to R.36.
 - One embedding model, one vector store, no reranking, by design. A production version would add a reranker and compare embedding models.
-- The generator occasionally omits an inline citation on very short answers (3 of 30 here), which lowers strict citation recall; citations are matched at the page level, which is harsh when a Recommendation spans several pages, so the hit rate is the fairer read.
-- One out-of-scope question (the EU AML definition of customer due diligence) was answered with FATF's definition rather than a clean "not in this document." It did not fabricate, but it conflated two frameworks.
+- The generator occasionally omits an inline citation, especially on very short answers, which lowers strict citation recall; citations are matched at the page level, which is harsh when a Recommendation spans several pages, so the hit rate is the fairer read.
 - The faithfulness judge is a single model (Haiku 4.5) with a v1.0 rubric. The next validation step is to hand-label a subset of answers and report judge-versus-human agreement (Cohen's kappa), the same validation used in the capstone this reuses.
 - This is not legal or compliance advice. It answers only from one version (October 2025) of one document.
 

@@ -10,15 +10,15 @@
 
 | Metric | Value |
 |---|---|
-| Retrieval recall@8 | 0.969 |
-| Retrieval MRR | 0.644 |
-| Citation hit rate (cites a correct page) | 0.75 |
-| Citation recall (strict, all pages) | 0.57 |
-| Citation precision | 0.365 |
-| Answer faithfulness (LLM judge) | 0.828 |
-| Out-of-scope handled (no fabrication) | 0.9 |
+| Retrieval recall@8 | 1.0 |
+| Retrieval MRR | 0.647 |
+| Citation hit rate (cites a correct page) | 0.719 |
+| Citation recall (strict, all pages) | 0.576 |
+| Citation precision | 0.378 |
+| Answer faithfulness (LLM judge) | 0.859 |
+| Out-of-scope handled (no fabrication) | 1.0 |
 | False-abstention rate (answerable) | 0.0 |
-| Lexical token-F1 (secondary) | 0.139 |
+| Lexical token-F1 (secondary) | 0.136 |
 | Exact match (footnote, ~0 expected) | 0.0 |
 
 Faithfulness (the LLM judge) is the primary answer-quality metric. Citation hit rate (does the answer cite at least one correct page) is the primary citation metric; strict recall is shown too but is harsh when a Recommendation spans several pages. Token-F1 is a secondary lexical-overlap proxy that penalizes paraphrase; exact match is near zero for generative answers by design and is not a quality signal.
@@ -27,9 +27,9 @@ Faithfulness (the LLM judge) is the primary answer-quality metric. Citation hit 
 
 | Difficulty | N | recall@k | citation recall | faithfulness |
 |---|---|---|---|---|
-| easy | 10 | 1.0 | 0.583 | 0.95 |
-| medium | 18 | 0.944 | 0.597 | 0.806 |
-| hard | 4 | 1.0 | 0.416 | 0.625 |
+| easy | 10 | 1.0 | 0.533 | 0.9 |
+| medium | 18 | 1.0 | 0.643 | 0.861 |
+| hard | 4 | 1.0 | 0.375 | 0.75 |
 
 ## Coverage
 
