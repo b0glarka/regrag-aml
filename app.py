@@ -35,6 +35,7 @@ FATF_DOCS = (
     "fatf-recommendations.html"
 )
 REPO_URL = "https://github.com/b0glarka/regrag-aml"
+PORTFOLIO_URL = "https://b0glarka.github.io/"
 
 EXAMPLES = {
     "Customer due diligence": "What must financial institutions do for customer due diligence?",
@@ -91,7 +92,11 @@ with st.sidebar:
         st.metric("Out-of-scope handled", metrics["abstention"]["out_of_scope_handled"])
         st.caption(f"On a hand-written {metrics['n_items']}-item gold set.")
     st.subheader("Links")
-    st.markdown(f"- [FATF Recommendations]({FATF_DOCS})\n- [Source code]({REPO_URL})")
+    st.markdown(
+        f"- [Author's portfolio]({PORTFOLIO_URL})\n"
+        f"- [FATF Recommendations]({FATF_DOCS})\n"
+        f"- [Source code]({REPO_URL})"
+    )
     st.caption(
         "Not legal or compliance advice. Answers are drawn only from the "
         "October 2025 FATF Recommendations."
@@ -99,6 +104,7 @@ with st.sidebar:
 
 # --- Main ------------------------------------------------------------------
 st.title("RegRAG-AML")
+st.markdown(f"Built by [Boga Petruska]({PORTFOLIO_URL}) · [source code]({REPO_URL})")
 st.caption(
     "Ask about the FATF AML/CFT Recommendations. Answers are grounded in the "
     "source text with page citations, and the assistant abstains when the "
